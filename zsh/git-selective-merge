@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Merge into current branch and ignore specified folder.  
+#
+# git-selective-merge
+# $1: branch to be merged into current branch
+# $2: file/folder to ignore
+
+currentBranch=$(git rev-parse --abbrev-ref HEAD)
+
+git merge --no-commit --no-ff $1
+git checkout HEAD $2
+git commit -m "Merge branch ${1} into ${currentBranch}. Ignore ${2}"
